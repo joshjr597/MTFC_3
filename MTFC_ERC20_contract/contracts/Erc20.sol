@@ -17,7 +17,7 @@ contract Tokens is ERC20, Ownable {
 
     function burn(address from, uint256 amount) external {
         _burn(from, amount);
-
+    }
     function transfer(address _from, address _to, uint256 _amount)external {
         _transfer(_from, _to, _amount);
     }
