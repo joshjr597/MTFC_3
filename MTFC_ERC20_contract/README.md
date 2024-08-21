@@ -1,63 +1,66 @@
-# JOEY_TOKEN - ERC20 Token Contract
+# ERC20 Austin Token (JJ)
 
-JOEY_TOKEN is an ERC20 token contract built on Solidity using Hardhat. This contract allows users to manage and transfer tokens on the Ethereum blockchain.
+Austin Token (symbol: `JJ`) is an ERC20 token deployed on the Ethereum blockchain. The smart contract is built using OpenZeppelin's ERC20 standard and offers features like minting, burning, and controlled transfers.
+
+## Overview
+
+- **Token Name:** Austin
+- **Token Symbol:** JJ
+- **Initial Supply:** Defined at contract deployment.
 
 ## Features
 
-- _ERC20 Compliance_: Follows the ERC20 standard interface for seamless integration with wallets and exchanges.
-- _Token Transfer_: Allows users to transfer tokens between addresses.
-- _Token Approval_: Enables users to approve other addresses to spend tokens on their behalf.
-- _Token Allowance_: Provides a method for querying the amount of tokens that an address is allowed to spend.
-- _Token Minting_: Minting function to create new tokens.
-- _Token Burning_: Burning function to remove tokens from circulation.
+- **Minting:** The contract owner can mint additional tokens to any address.
+- **Burning:** Tokens can be burned (removed from circulation) by the owner.
+- **Controlled Transfers:** Allows specified transfers between addresses.
 
-## Requirements
+## Smart Contract Functions
 
-- Node.js
-- Hardhat
-- Solidity
+### Constructor
 
-## Installation
+Initializes the contract with:
 
-1. Clone this repository:
+- **Name:** Austin
+- **Symbol:** JJ
+- **Initial Supply:** Mints the specified `initialSupply` to the contract owner’s address.
 
-   bash
-   git clone https://github.com/JoshdfG/ERC20-contract.git
+```solidity
+constructor(uint256 initialSupply)
+```
 
-2. Navigate to the project directory:
+### Mint
 
-   bash
-   cd signor-token
+Mints new tokens to a specified address. Only the contract owner can execute this function.
 
-3. Install dependencies:
+```solidity
+function mint(address to, uint256 amount) external onlyOwner
+```
 
-   bash
-   npm install
+### Burn
 
-## Usage
+Burns a specified amount of tokens from an address, reducing the total supply.
 
-1. Compile the contracts:
+```solidity
+function burn(address from, uint256 amount) external
+```
 
-   bash
-   npx hardhat compile
+### Transfer
 
-2. Run unit tests:
+Transfers a specified amount of tokens from one address to another.
 
-   bash
-   npx hardhat test
+```solidity
+function transfer(address _from, address _to, uint256 _amount) external
+```
 
-3. Deploy the contract to an Ethereum network:
+## Deployment Instructions
 
-   bash
-   npx hardhat run scripts/deploy.js --network <network-name>
+1. **Install OpenZeppelin Contracts:**
+   ```bash
+   npm install @openzeppelin/contracts
+   ```
+2. **Compile the Smart Contract:** Use a Solidity compiler.
+3. **Deploy the Contract:** Deploy using Remix, Hardhat, Truffle, or any preferred Ethereum deployment tool, providing the `initialSupply` as a constructor argument.
 
-## Testing
+## License
 
-Unit tests are located in the test directory. You can run tests using Hardhat's testing framework.
-
-bash
-npx hardhat test
-
-## Contributing
-
-Contributions are welcome! If you find any issues or want to add new features, feel free to open an issue or submit a pull request.
+This project is licensed under the MIT License.
